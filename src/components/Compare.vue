@@ -12,12 +12,12 @@
                         <h2>V.S.</h2>
                     </div>
                     <div class="column is-5 first company">
-                        <h1>{{ companyOne.querySelector('Info').getAttribute('LegalNm') }}</h1>
-                        <h3>CRD# {{ companyOne.querySelector('Info').getAttribute('FirmCrdNb') }}</h3>
+                        <h1 v-if="companyOne">{{ companyOne.querySelector('Info').getAttribute('LegalNm') }}</h1>
+                        <h3 v-if="companyOne">CRD# {{ companyOne.querySelector('Info').getAttribute('FirmCrdNb') }}</h3>
                     </div>
                     <div class="column is-5 second company">
-                        <h1>{{ companyTwo.querySelector('Info').getAttribute('LegalNm') }}</h1>
-                        <h3>CRD# {{ companyTwo.querySelector('Info').getAttribute('FirmCrdNb') }}</h3>
+                        <h1 v-if="companyTwo">{{ companyTwo.querySelector('Info').getAttribute('LegalNm') }}</h1>
+                        <h3 v-if="companyTwo">CRD# {{ companyTwo.querySelector('Info').getAttribute('FirmCrdNb') }}</h3>
                     </div>
                 </div>
                 <div class="columns">
@@ -25,10 +25,10 @@
                         <h2>Disclosure</h2>
                     </div>
                     <div class="column is-5 first">
-                        <h2>{{ disclosureCount(companyOne) }}</h2>
+                        <h2 v-if="companyOne">{{ disclosureCount(companyOne) }}</h2>
                     </div>
                     <div class="column is-5 second">
-                        <h2>{{ disclosureCount(companyTwo) }}</h2>
+                        <h2 v-if="companyTwo">{{ disclosureCount(companyTwo) }}</h2>
                     </div>
                 </div>
                 <div class="columns">
@@ -36,10 +36,10 @@
                         <h2>SEC Regulation</h2>
                     </div>
                     <div class="column is-5 first">
-                        <p>{{ secRegulations(companyOne) }}</p>
+                        <p v-if="companyOne">{{ secRegulations(companyOne) }}</p>
                     </div>
                     <div class="column is-5 second">
-                        <p>{{ secRegulations(companyTwo) }}</p>
+                        <p v-if="companyTwo">{{ secRegulations(companyTwo) }}</p>
                     </div>
                 </div>
                 <div class="columns last">
@@ -47,14 +47,20 @@
                         <h2>Services</h2>
                     </div>
                     <div class="column is-5 first">
-                        <p>Investment Advisor</p>
+                        <p v-if="companyOne">{{ services(companyOne) }}</p>
                     </div>
                     <div class="column is-5 second">
-                        <p>Investment Advisor</p>
+                        <p v-if="companyTwo">{{ services(companyTwo) }}</p>
                     </div>
                 </div>
             </div>
+            <div class="container" style="margin-top:30px; margin-bottom: 100px; text-align: center">
+                <router-link to="/data">
+                <a class="button is-medium is-primary is-outlined">Back to Results</a>
+                </router-link>
+            </div>
         </section>
+        <b-loading :is-full-page="isFullPage" :active.sync="isLoading"></b-loading>
     </div>
 </template>
 <script>
@@ -63,6 +69,7 @@ export default {
     name: 'Compare',
     data () {
         return {
+            isLoading: true,
             companyOne: null,
             companyTwo: null
         }
@@ -78,12 +85,13 @@ export default {
 
             _this.companyOne = xmlDoc.querySelector('Info[FirmCrdNb="'+compareOne+'"]').parentElement
             _this.companyTwo = xmlDoc.querySelector('Info[FirmCrdNb="'+compareTwo+'"]').parentElement
-            console.log('got the xml')
+            
+            _this.isLoading = false;
         })
     },
     methods: {
         disclosureCount(firm) {
-            if (firm != null) {
+            if (this.companyOne != null || this.companyTwo != null) {
                 var i = 0;
 
                 var item = firm.querySelector('Item11')
@@ -174,7 +182,7 @@ export default {
             }
         },
         secRegulations(firm) {
-            if (firm != null) {
+            if (this.companyOne != null || this.companyTwo != null) {
 
                 var item = firm.querySelector('Item2A')
                 var regulations = []
@@ -221,7 +229,53 @@ export default {
                 return regulations.join(", ")
             }
         },
+        services(firm) {
+            if (this.companyOne != null || this.companyTwo != null) {
 
+                var item = firm.querySelector('Item5G')
+                var services = []
+
+                if (item.getAttribute('Q5G1') == 'Y') { 
+                    services.push("Financial planning services")
+                }
+                if (item.getAttribute('Q5G2') == 'Y') { 
+                    services.push("Portfolio management for individuals and/or small businesses")
+                }
+                if (item.getAttribute('Q5G3') == 'Y') { 
+                    services.push("Portfolio management for investment companies")
+                }
+                if (item.getAttribute('Q5G4') == 'Y') { 
+                    services.push("Portfolio management for pooled investment vehicles")
+                }
+                if (item.getAttribute('Q5G5') == 'Y') { 
+                    services.push("Portfolio management for businesses or institutional clients")
+                }
+                if (item.getAttribute('Q5G6') == 'Y') { 
+                    services.push("Pension consulting services")
+                }
+                if (item.getAttribute('Q5G7') == 'Y') { 
+                    services.push("Selection of other advisers")
+                }
+                if (item.getAttribute('Q5G8') == 'Y') { 
+                    services.push("Publication of periodicals or newsletters")
+                }
+                if (item.getAttribute('Q5G9') == 'Y') { 
+                    services.push("Security ratings or pricing services")
+                }
+                if (item.getAttribute('Q5G10') == 'Y') { 
+                    services.push("Market timing services")
+                }
+                if (item.getAttribute('Q5G11') == 'Y') { 
+                    services.push("Educational seminars/workshops")
+                }
+                if (item.getAttribute('Q5G12') == 'Y') { 
+                    services.push("Other")
+                }
+
+                return services.join(", ")
+            }
+            
+        }
     }
 }
 </script>
@@ -267,6 +321,10 @@ section.compare-heading {
     h3 {
         font-weight: normal;
         font-size: 20px;
+    }
+    p {
+        font-size: 20px;
+        margin: 0 10px;
     }
     &.company {
         h1  {

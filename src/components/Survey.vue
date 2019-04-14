@@ -2,7 +2,7 @@
 <div class="fullpage-container">
     <div class="fullpage-wp" v-fullpage="opts" ref="example">
         <div class="page-1 page">
-            <div class="container">
+            <div class="container" v-animate="{value: 'fadeIn', delay: 0}">
 
                 <!-- Hacky Stuff here -->
                 <div id="isClick" :data-on-click="buttonClick"></div>
@@ -36,13 +36,11 @@
                 </div>
                 <div class="actions">
                     <b-button type="is-primary" :disabled="!questionOne" @click="handleQuestionOne">Submit</b-button>
-
-                    <a @click="handleQuestionSeven">Goto</a>
                 </div>
             </div>
         </div>
         <div class="page-2 page">
-            <div class="container">
+            <div class="container" v-animate="{value: 'fadeIn', delay: 0}">
                 <h1 class="title">
                     Do you have a clear idea about the amount or type of investment you’re going to make?
                 </h1>
@@ -69,7 +67,7 @@
             </div>
         </div>
         <div class="page-3 page">
-            <div class="container"  v-animate="{value: 'fadeIn', delay: 0}">
+            <div class="container" v-animate="{value: 'fadeIn', delay: 0}">
                 <h1 class="title">
                     What’s the approximate amount of capital you are (or intend to) invest?
                 </h1>
@@ -117,7 +115,7 @@
             </div>
         </div>
         <div class="page-4 page">
-            <div class="container">
+            <div class="container" v-animate="{value: 'fadeIn', delay: 0}">
                 <h1 class="title">
                     What kind of service do you need?
                 </h1>
@@ -193,7 +191,7 @@
             </div>
         </div>
         <div class="page-5 page">
-            <div class="container">
+            <div class="container" v-animate="{value: 'fadeIn', delay: 0}">
                 <h1 class="title">
                     Do you also need advising services on these fields? (Optional)
                 </h1>
@@ -255,7 +253,7 @@
             </div>
         </div>
         <div class="page-6 page">
-            <div class="container">
+            <div class="container" v-animate="{value: 'fadeIn', delay: 0}">
                 <h1 class="title">
                     Which kind of the following advisor do you prefer? (Optional)
                 </h1>
@@ -296,7 +294,7 @@
             </div>
         </div>
         <div class="page-7 page">
-            <div class="container">
+            <div class="container" v-animate="{value: 'fadeIn', delay: 0}">
                 <h1 class="title">
                     You can narrow down by Zip Code (optional)
                 </h1>

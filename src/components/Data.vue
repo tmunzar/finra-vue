@@ -31,6 +31,7 @@
                 </div>
             </div>
         </div>
+        <b-loading :is-full-page="isFullPage" :active.sync="isLoading"></b-loading>
     </div>
 </template>
 <script>
@@ -39,6 +40,7 @@ export default {
   name: 'Data',
   data () {
     return {
+        isLoading: true,
         finalNodes: [],
         compareIds: []
     }
@@ -177,6 +179,8 @@ export default {
                     this.finalNodes.push(parents4[i])
                 }
             }
+
+            this.isLoading = false;
 
 
         })

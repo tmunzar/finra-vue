@@ -3,7 +3,7 @@
      <nav id="header" class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
             <router-link to="/" tag="a" class="navbar-item">
-              <img src="./assets/logo.svg" width="200">
+              <img src="./assets/logo.svg" width="250">
             </router-link>
 
             <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -18,7 +18,7 @@
             
             </div>
 
-            <div class="navbar-end">
+            <!-- <div class="navbar-end">
                 <a class="navbar-item">
                     Home
                 </a>
@@ -34,7 +34,7 @@
                 <a class="navbar-item">
                     Contact
                 </a>
-            </div>
+            </div> -->
         </div>
     </nav>
     <div id="app">
