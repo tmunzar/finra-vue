@@ -1,0 +1,94 @@
+Q1
+Answer: 1
+Item5D 
+Q5D2A == 0
+Q5D2B == 0
+
+Answer: 2
+Item5D 
+Q5D2H == 0
+Q5D2I == 0
+Q5D2M == 0
+
+Answer: 3
+Item5D
+don't matter
+
+
+Q2
+don't matter
+
+Q3
+Answer: 1
+Item2A
+Q2A5 == Y
+Q2A8 == Y
+Q2A11 == Y
+
+Answer: 2 & 3
+Item2A
+Q2A2 == Y
+
+Answer: 4 & 5
+Item2A
+Q2A1 == Y
+Q2A6 == Y
+Q2A7 == Y
+
+
+Q4
+Answer: 1
+Item5G
+Q5G1 == Y
+
+Answer: 2
+Q5G2, G3, G4, G5
+
+Answer: 3
+Q5G
+
+Answer: 4
+Q5G6
+
+Answer: 5
+Q5G7
+
+Answer: 6
+Q5G9
+
+Answer: 7
+Q5G10
+
+Answer: 8
+Q5G11
+
+Answer: other
+Q5G12
+
+
+Q5
+Answer: 1
+sny
+Answer: 2
+Q6A5
+Answer: 3
+Q6A6
+Answer: 4
+Q6A7
+Answer: 5
+Q6A12
+Answer: 6
+Q6A13
+Answer: 87
+Q6A14
+
+Q6
+Answer: 
+
+Q7
+Match zip code
+
+
+
+
+
